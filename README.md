@@ -79,7 +79,7 @@
   }
   ```
   * Chaining loaders:
-    * style.less -> less-loader -> style.css -> css-loader -> *.js -> style-loader -> inlineStyleInBrowser.js
+    * style.less -> _less-loader_ -> style.css -> _css-loader_ -> *.js -> _style-loader_ -> inlineStyleInBrowser.js
     ```
     // webpack.config.js
     rules: [
@@ -178,7 +178,7 @@
       }
   };
   ```
-*  html-webpack-plugin: This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that include a hash in the filename which changes every compilation. You can either let the plugin generate an HTML file for you, supply your own template using lodash templates or use your own loader.
+*  **html-webpack-plugin**: This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that include a hash in the filename which changes every compilation. You can either let the plugin generate an HTML file for you, supply your own template using lodash templates or use your own loader.
 ```
 yarn add html-webpack-plugin --dev
 ```
@@ -196,7 +196,7 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {
     }
 };
 ```
-* webpack-dev-server: A development server that provides live reloading. This should be used for development only.
+* **webpack-dev-server**: A development server that provides live reloading. This should be used for development only.
 ```
 npm install webpack-dev-server -D
 ```
@@ -214,7 +214,7 @@ npm install webpack-dev-server -D
   ```
   module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {...};
   ```
-* webpack.merge: just like object assign, merge different isolated config
+* **webpack.merge**: just like object assign, merge different isolated config
 ```
 yarn add webpack-merge --dev
 ```
@@ -234,8 +234,8 @@ module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {
     );
 };
 ```
-* webpack-dev-middleware: add to express like other plugins, it provides hot module replacement on server side
-* multipage-webpack-plugin: webpack plugin that allows for trivial configuration for multi page web applications
+* **webpack-dev-middleware**: add to express like other plugins, it provides hot module replacement on server side
+* **multipage-webpack-plugin**: webpack plugin that allows for trivial configuration for multi page web applications
 * Using CSS with webpack:
 ```
 module.exports = () => ({
@@ -246,7 +246,7 @@ module.exports = () => ({
     }
 });
 ```
-* Hot Module Replacement (HMR): exchanges, adds, or removes modules while an application is running, without a full reload. This can significantly speed up development in a few ways:
+* **Hot Module Replacement** (HMR): exchanges, adds, or removes modules while an application is running, without a full reload. This can significantly speed up development in a few ways:
   * Retain application state which is lost during a full reload. 
   * Save valuable development time by only updating what's changed. 
   * Instantly update the browser when modifications are made to CSS/JS in the source code, which is almost comparable to changing styles directly in the browser's dev tools.
@@ -255,7 +255,7 @@ module.exports = () => ({
     "dev": "npm run webpack-dev-server -- --env.mode development --hot"
 },
 ```
-* mini-css-extract-plugin: This plugin extracts CSS into separate files. It creates a CSS file per JS file which contains CSS. It supports On-Demand-Loading of CSS and SourceMaps.
+* **mini-css-extract-plugin**: This plugin extracts CSS into separate files. It creates a CSS file per JS file which contains CSS. It supports On-Demand-Loading of CSS and SourceMaps.
 ```
 npm install --save-dev mini-css-extract-plugin
 ```
@@ -274,7 +274,7 @@ module.exports = () => ({
     plugins: [new miniCssExtractPlugin()]
 });
 ```
-* file-loader and url-loader
+* **file-loader** and **url-loader**
   * file-loader: The file-loader resolves import/require() on a file into a url and emits the file into the output directory.
   * url-loader: A loader for webpack which transforms files into base64 URIs.
 ```
@@ -331,7 +331,7 @@ module.exports = () => {
 ```
 "prod:typescript": "npm run prod -- --env.presets typescript"
 ```
-* webpack-bundle-analyzer: It will create an interactive treemap visualization of the contents of all your bundles.
+* **webpack-bundle-analyzer**: It will create an interactive treemap visualization of the contents of all your bundles.
   * Realize what's really inside your bundle 
   * Find out what modules make up the most of its size 
   * Find modules that got there by mistake 
@@ -345,7 +345,7 @@ yarn add webpack-bundle-analyzer --dev
 ```
 npm run prod:analyze
 ```
-* compression-webpack-plugin: Prepare compressed versions of assets to serve them with Content-Encoding.
+* **compression-webpack-plugin**: Prepare compressed versions of assets to serve them with Content-Encoding.
 ```
 yarn add compression-webpack-plugin --dev
 ```
@@ -426,7 +426,7 @@ Chapter 4: Web performance with Webpack
     ```
   * Always focus on splitting before caching 
 * Magic comments
-  * webpackChunkName
+  * **webpackChunkName**
   ```
   // This will cause our separate bundle to be named footer.bundle.js instead of just [id].bundle.js
   const loadFooter = () => import(/* webpackChunkName: 'footer' */'./footer');
@@ -437,7 +437,7 @@ Chapter 4: Web performance with Webpack
       chunkFilename: '[name].lazy-chunk.js'
   },
   ```
-  * webpackMode: build time optimization, usually for dev mode
+  * **webpackMode**: build time optimization, usually for dev mode
   ```
   if (process.env.NODE_ENV === 'development') {
       const setButtonStyle = (color) => import(/* webpackMode: 'lazy-once' */`./button-styles/${color}`);
@@ -455,7 +455,7 @@ Chapter 4: Web performance with Webpack
     * Compare:
       * Prefetch is used to use the idle time of the browser to speed up future navigations. Using it may cost additional bandwidth when the user doesn’t do the expected future navigation.
       * Preload is used to discover resources earlier and avoid a waterfall-like fetching. It’s can bring down the page load to 2 round-trips (1. HTML, 2. all other resources). Using it doesn’t cost additional bandwidth.
-    * webpackPrefetch:
+    * **webpackPrefetch**:
     ```
     // prefetch
     import(/* webpackPrefetch: true */ "LoginModal");
@@ -464,7 +464,7 @@ Chapter 4: Web performance with Webpack
     // generated prefetch for the resource 
     <link charset="utf-8" rel="prefetch" as="script" href="0.lazy-chunk.js"></link>
     ```
-    * webpackPreload:
+    * **webpackPreload**:
     ```
     // preload
     const getLoadash = () => import(/* webpackPreload: true */'loadash-es');
